@@ -65,7 +65,7 @@ var env = process.env.NODE_ENV || "dev",
 
     cssFiles = [
       "web/css/**/*.css",
-      "web/components/rv-style-guide/dist/css/*.min.css"
+      "web/components/common-style/dist/css/*.min.css"
     ],
 
     imgFiles = [
@@ -83,6 +83,10 @@ var env = process.env.NODE_ENV || "dev",
 
     fileFiles = [
       "web/files/**/*"
+    ],
+
+    fontFiles = [
+      "web/components/common-style/dist/fonts/*"
     ];
 
 gulp.task("clean", function() {
@@ -144,6 +148,10 @@ gulp.task("files", ["clean"], function() {
     .pipe(gulp.dest("dist/files"));
 });
 
+gulp.task("fonts", ["clean"], function() {
+  return gulp.src(fontFiles)
+    .pipe(gulp.dest("dist/fonts"));
+});
 
 gulp.task("img", ["clean"], function() {
   return gulp.src(imgFiles)
@@ -176,7 +184,7 @@ gulp.task("config", function() {
     .pipe(gulp.dest("./web/js/config"));
 });
 
-gulp.task("build", ["clean", "config", "html", "view", "files", "img", "css"]);
+gulp.task("build", ["clean", "config", "html", "view", "files", "img", "css", "fonts"]);
 
 
 gulp.task("test", function() {
